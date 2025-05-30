@@ -27,7 +27,7 @@ docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     -v /docker-data/letsencrypt:/etc/letsencrypt \
     -p 25:25 -p 464:465 -p 992:993 -p 4190:4190\
     -e ENABLE_FAIL2BAN=1 -e SSL_TYPE=letsencrypt -e PERMIT_DOCKER=network \
-    -e ONE_DIR=1 -e ENABLE_POSTGREY=0 -e ENABLE_CLAMAV=0 -e ENABLE_SPAMASSASSIN=0 -e SPOOF_PROTECTION=0 -e ENABLE_MANAGESIEVE=1\
+    -e ONE_DIR=1 -e ENABLE_POSTGREY=1 -e ENABLE_CLAMAV=0 -e ENABLE_SPAMASSASSIN=0 -e SPOOF_PROTECTION=0 -e ENABLE_MANAGESIEVE=1\
     -e POSTMASTER_ADDRESS="$POSTMASTER_ADDRESS" -e ENABLE_UPDATE_CHECK=1 -e PFLOGSUMM_TRIGGER="logrotate" -e LOGWATCH_INTERVAL="daily"\
     -e ENABLE_OPENDKIM=1 -e ENABLE_OPENDMARC=1 -e ENABLE_POLICYD_SPF=1 \
     --cap-add=NET_ADMIN \
