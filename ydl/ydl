@@ -17,10 +17,10 @@ from mutagen import File, easyid3, id3
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 log = logging.getLogger("YDL")
 
-RETRY_COUNTER_MAX = 5
+RETRY_COUNTER_MAX = 50
 POST_DL_COOLDOWN = 15
-ERROR_COOLDOWN = 60
-LOOP_COOLDOWN = 600
+ERROR_COOLDOWN = 30
+LOOP_COOLDOWN = 300
 DOCKER_DATA_PATH = "/ydl/"
 TMP_DIR = "/var/tmp"
 PARAMS_LOCATION = path.join(DOCKER_DATA_PATH, "ydl_param.csv")
