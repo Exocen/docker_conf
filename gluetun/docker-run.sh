@@ -14,6 +14,10 @@ if [ -z ${VPN_KEY+x} ]; then
     fi
 fi
 
+if [ -z ${VPN_COUNTRY+x} ]; then
+    VPN_COUNTRY="SWEDEN"
+fi
+
 docker run -d --rm --cap-add=NET_ADMIN --name gluetun --log-driver=journald \
     -e VPN_SERVICE_PROVIDER=mullvad -e VPN_TYPE=openvpn \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
@@ -25,7 +29,7 @@ docker run -d --rm --cap-add=NET_ADMIN --name gluetun --log-driver=journald \
     -p 22000:22000/tcp \
     -p 22000:22000/udp \
     -p 21027:21027/udp \
-    -e SERVER_COUNTRIES="USA" -e OPENVPN_USER="$VPN_KEY" qmcgaw/gluetun && echo "gluetun started."
+    -e SERVER_COUNTRIES="$VPN_COUNTRY" -e OPENVPN_USER="$VPN_KEY" qmcgaw/gluetun && echo "gluetun started."
 
 # Ports
 
