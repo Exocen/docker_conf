@@ -11,6 +11,6 @@ docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     -e PUID=1000 \
     -e PGID=1000 \
     -v /docker-data/openvpn:/etc/openvpn\
-    -p 1194:1194/udp --cap-add=NET_ADMIN
+    -p 1194:1194/udp --cap-add=NET_ADMIN\
     --name=openvpn\
     kylemanna/openvpn:latest && echo "Openvpn started."
