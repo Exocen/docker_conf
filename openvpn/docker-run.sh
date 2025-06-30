@@ -7,7 +7,6 @@ fi
 
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     -e "TZ=$(timedatectl status | grep "zone" | sed -e 's/^[ ]*Time zone: \(.*\) (.*)$/\1/g')" \
-    --network=host \
     -e PUID=1000 \
     -e PGID=1000 \
     -v /docker-data/openvpn:/etc/openvpn\
