@@ -54,7 +54,7 @@ class Main:
                 self.db = {}
 
     def write_title_list(self, done_list):
-        log.info(f"Writing titles to {DB_PATH}")
+        log.debug(f"Writing titles to {DB_PATH}")
         self.db[self.playlist_id] = done_list
         try:
             with open(DB_PATH, "w", newline="") as json_file:
