@@ -26,6 +26,7 @@ docker run -d --rm --cap-add=NET_ADMIN --name gluetun --log-driver=journald \
     -p 8000:8000/tcp \
     -p 9091:9091 \
     -p 8384:8384 \
+    -p 8096:8096 \
     -p 22000:22000/tcp \
     -p 22000:22000/udp \
     -p 21027:21027/udp \
@@ -38,6 +39,7 @@ docker run -d --rm --cap-add=NET_ADMIN --name gluetun --log-driver=journald \
 #  -p 6800:6800 # firefox web access
 #  -p 9091:9091  # transmission ui
 #  -p 8384:8384 # syncthing port web access
+#  -p 8096:8096 # jellyfish
 #  -p 22000:22000/tcp # syncthing
 #  -p 22000:22000/udp # syncthing
 #  -p 21027:21027/udp # syncthing

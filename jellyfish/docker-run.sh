@@ -13,7 +13,7 @@ fi
 
 #PGUID 1000 PGID 1000 -> must have folder permission
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
-    --name=transmission \
+    --name=jellyfish\
     -e PUID=1000 \
     -e PGID=1000 \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
