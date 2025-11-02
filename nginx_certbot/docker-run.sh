@@ -11,10 +11,10 @@ else
         else
             DOMAIN=$1
         fi
-        if [ -z ${NGINX_FILEBROWSER_PATH+x} ] ; then
-            echo "No path supplied"
-            NGINX_FILEBROWSER_PATH=/dev/null
-        fi
+    fi
+    if [ -z ${NGINX_FILEBROWSER_PATH+x} ] ; then
+        echo "No path supplied"
+        NGINX_FILEBROWSER_PATH="/dev/null"
     fi
 fi
 
