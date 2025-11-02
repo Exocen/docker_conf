@@ -17,7 +17,7 @@ fi
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 docker run \
-    --name nginx-filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
+    --name nginx_filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
     -v "$NGINX_FILEBROWSER_PATH":/usr/share/nginx/html/:ro \
     -v `pwd -P`/nginx-conf:/etc/nginx/nginx.conf:ro \
     -p 6080:80 \
