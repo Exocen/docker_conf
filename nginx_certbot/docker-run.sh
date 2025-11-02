@@ -39,7 +39,7 @@ docker run \
     -v /docker-data/letsencrypt:/etc/letsencrypt/ \
     -v /docker-data/nginx/:/usr/share/nginx:ro \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
-    -v $NGINX_FILEBROWSER_PATH:/usr/share/nginx/html:ro \
+    -v $NGINX_FILEBROWSER_PATH:/usr/share/nginx/html/:ro \
     -u 1000:1000 \
     --log-driver=journald --log-opt tag="{{.Name}}" --rm \
     --name nginx_certbot --net host -d \
