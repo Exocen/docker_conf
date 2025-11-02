@@ -223,7 +223,7 @@ class Main:
         # Remove oldest notifs (MAX_NOTIFICATION_AGE)
         parent_map = {c: p for p in self.feed_tree.iter() for c in p}
         categories_notif = self.feed_tree.findall(
-            './{*}entry/{*}category[@term="notif"]', NS
+            './{*}entry/{*}category', NS
         )
         entries = [parent_map[cat] for cat in categories_notif]
         entry_to_remove = []
