@@ -11,6 +11,10 @@ else
         else
             DOMAIN=$1
         fi
+        if [ -z ${NGINX_FILEBROWSER_PATH+x} ] ; then
+            echo "No path supplied"
+            NGINX_FILEBROWSER_PATH=/dev/null
+        fi
     fi
 fi
 
@@ -25,7 +29,7 @@ fi
 
 tmpD=$(mktemp -d)
 cp -n -r static-html/* "$tmpD"/
-cd "$tmpD" || exit 1 
+cd "$tmpD" || exit 1
 find . -type f -print0 | xargs -0 sed -i 's/\[DOMAIN\]/'"$DOMAIN"'/g'
 mkdir -p /docker-data/nginx/
 cp -n -r "$tmpD"/* /docker-data/nginx/
@@ -35,6 +39,7 @@ docker run \
     -v /docker-data/letsencrypt:/etc/letsencrypt/ \
     -v /docker-data/nginx/:/usr/share/nginx:ro \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+    -v $NGINX_FILEBROWSER_PATH:/usr/share/nginx/html:ro \
     --log-driver=journald --log-opt tag="{{.Name}}" --rm \
     --name nginx_certbot --net host -d \
     nginx_certbot_img:latest && echo "nginx_certbot started"
