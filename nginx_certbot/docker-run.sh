@@ -31,13 +31,15 @@ tmpD=$(mktemp -d)
 cp -n -r static-html/* "$tmpD"/
 cd "$tmpD" || exit 1
 find . -type f -print0 | xargs -0 sed -i 's/\[DOMAIN\]/'"$DOMAIN"'/g'
-mkdir -p /docker-data/nginx/
-cp -n -r "$tmpD"/* /docker-data/nginx/
+mkdir -p /docker-data/nginx/static
+cp -n -r "$tmpD"/* /docker-data/nginx/static
+touch /docker-data/nginx/htpasswd
 rm -rf "$tmpD"
 
 docker run \
     -v /docker-data/letsencrypt:/etc/letsencrypt/ \
-    -v /docker-data/nginx/:/usr/share/nginx:ro \
+    -v /docker-data/nginx/static/:/usr/share/nginx:ro \
+    -v /docker-data/nginx/htpasswd:/etc/nginx/htpasswd:ro \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
     -v $NGINX_FILEBROWSER_PATH:/usr/share/nginx_local:ro \
     --log-driver=journald --log-opt tag="{{.Name}}" --rm \
