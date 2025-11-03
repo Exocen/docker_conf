@@ -1,6 +1,5 @@
 [nginx-http-auth]
 enabled = true
-filter = nginx_certbot
 backend = systemd
 maxretry = 3  ; Number of failed attempts before banning
 bantime = 3600 ; Ban duration in seconds (e.g., 1 hour)
