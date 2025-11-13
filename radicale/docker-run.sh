@@ -15,6 +15,5 @@ docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     --name=radicale \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
     --net user_network --ip 10.0.0.83 \
-    --network=container:gluetun \
     -v "$RADICALE_PATH":/data \
     tomsquest/docker-radicale && echo "radicale started."
