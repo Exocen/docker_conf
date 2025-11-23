@@ -14,8 +14,6 @@ else
     fi
 fi
 
-DOCKER_PATH="/docker-data/filebrowser"
-
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
 #UserId:GroudId -> 1000:1000 must have folder permission
