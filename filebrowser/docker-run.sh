@@ -28,6 +28,7 @@ fi
 
 if [ ! -f "$FILEBROWSER_DB_PATH" ] ; then
     mkdir $FILEBROWSER_DB_PATH
+    chmod 1000:1000 $FILEBROWSER_DB_PATH
 fi
 
 #UserId:GroudId -> 1000:1000 must have folder permission
