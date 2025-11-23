@@ -15,7 +15,7 @@ else
 fi
 
 DOCKER_PATH="/docker-data/filebrowser/"
-FILEBROWSER_DB_PATH="$DOCKER_PATH/database"
+FILEBROWSER_DB_PATH="$DOCKER_PATH/filebrowser.db"
 FILEBROWSER_SETTINGS_PATH="$DOCKER_PATH/config"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
@@ -23,18 +23,18 @@ mkdir -p $DOCKER_PATH
 
 if [ ! -f "$FILEBROWSER_SETTINGS_PATH" ] ; then
     mkdir $FILEBROWSER_SETTINGS_PATH
-    echo -en '{\n    "port": 80,\n    "baseURL": "",\n    "address": "",\n    "log": "stdout",\n    "database": "/database/database.db",\n    "root": "/srv"\n}' > $FILEBROWSER_SETTINGS_PATH/settings.json
+    echo -en '{\n    "port": 80,\n    "baseURL": "",\n    "address": "",\n    "log": "stdout",\n    "root": "/srv"\n}' > $FILEBROWSER_SETTINGS_PATH/settings.json
 fi
 
 if [ ! -f "$FILEBROWSER_DB_PATH" ] ; then
-    mkdir $FILEBROWSER_DB_PATH
+    touch $FILEBROWSER_DB_PATH
     chmod 1000:1000 $FILEBROWSER_DB_PATH
 fi
 
 #UserId:GroudId -> 1000:1000 must have folder permission
 docker run \
     --name filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
-    -v $FILEBROWSER_DB_PATH:/database \
+    -v $FILEBROWSER_DB_PATH:/filebrowser.db \
     -v $FILEBROWSER_SETTINGS_PATH:/config \
     -v "$FILEBROWSER_PATH":/srv \
     -u 1000:1000 \
