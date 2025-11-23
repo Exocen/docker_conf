@@ -5,7 +5,7 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-DOCKER_PATH="/docker-data/fmt-server/db"
+DOCKER_PATH="/docker-data/fmd-server/db"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 mkdir -p $DOCKER_PATH
