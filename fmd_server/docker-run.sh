@@ -9,6 +9,7 @@ DOCKER_PATH="/docker-data/fmt-server/db"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 mkdir -p $DOCKER_PATH
+chown 1000:1000 $DOCKER_PATH
 
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
