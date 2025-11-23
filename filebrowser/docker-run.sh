@@ -15,28 +15,29 @@ else
 fi
 
 DOCKER_PATH="/docker-data/filebrowser/"
-FILEBROWSER_DB_PATH="$DOCKER_PATH/filebrowser.db"
-FILEBROWSER_SETTINGS_PATH="$DOCKER_PATH/filebrowser.json"
+FILEBROWSER_DB_PATH="$DOCKER_PATH/database"
+FILEBROWSER_SETTINGS_PATH="$DOCKER_PATH/config"
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 mkdir -p $DOCKER_PATH
 
 if [ ! -f "$FILEBROWSER_SETTINGS_PATH" ] ; then
-    echo -en '{\n    "port": 80,\n    "baseURL": "",\n    "address": "",\n    "log": "stdout",\n    "database": "/database.db",\n    "root": "/srv"\n}' > $FILEBROWSER_SETTINGS_PATH
+    mkdir $FILEBROWSER_SETTINGS_PATH
     chown 1000:1000 $FILEBROWSER_SETTINGS_PATH
+    echo -en '{\n    "port": 80,\n    "baseURL": "",\n    "address": "",\n    "log": "stdout",\n    "database": "/database.db",\n    "root": "/srv"\n}' > $FILEBROWSER_SETTINGS_PATH/settings.json
+    chown 1000:1000 $FILEBROWSER_SETTINGS_PATH/settings.json
 fi
 
 if [ ! -f "$FILEBROWSER_DB_PATH" ] ; then
-    touch $FILEBROWSER_DB_PATH
+    mkdir $FILEBROWSER_DB_PATH
     chown 1000:1000 $FILEBROWSER_DB_PATH
 fi
 
 #UserId:GroudId -> 1000:1000 must have folder permission
 docker run \
     --name filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
-    -e FB_NOAUTH=noauth \
-    -v $FILEBROWSER_DB_PATH:/database.db \
-    -v $FILEBROWSER_SETTINGS_PATH:/.filebrowser.json \
+    -v $FILEBROWSER_DB_PATH:/database \
+    -v $FILEBROWSER_SETTINGS_PATH:/config \
     -v "$FILEBROWSER_PATH":/srv \
     -u 1000:1000 \
     -p 80:80 \
