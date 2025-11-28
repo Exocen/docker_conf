@@ -30,3 +30,4 @@ do
 	sleep 10m
 done
 echo "Too many errors, exiting"
+exit 1
