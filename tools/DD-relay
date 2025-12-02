@@ -13,7 +13,7 @@ trap cleanup SIGTERM
 e=0
 while [ $e -lt 3 ]
 do
-    if curl -s -o /dev/null -L "https://$address_to_check" && ! curl -s --user "$user:$pass" -L "https://$address_to_check" --head | grep "HTTP/2 200" > /dev/null; then
+    if curl -s -o /dev/null -L "https://$address_to_check" && ! curl -s --user "$user:$pass" -L "https://$address_to_check_with_folder_path" --head | grep "HTTP/2 200" > /dev/null; then
 		killall -I sftp-server 2>/dev/null
 
 		echo "Connection missing, starting sshfs"
