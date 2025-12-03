@@ -1,5 +1,4 @@
 [DEFAULT]
-banaction = iptables-allports[chain=FORWARD]
 protocol = all
 maxretry = 3
 findtime = 3600
