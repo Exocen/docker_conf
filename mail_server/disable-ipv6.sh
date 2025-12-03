@@ -11,4 +11,4 @@ if ip a | grep inet6; then
 
 fi
 
-ip a | grep inet6 && echo "ipv6 disabled" || echo "ipv6 still active !"
+ip a | grep inet6 && echo "ipv6 still active !" || echo "ipv6 disabled"
