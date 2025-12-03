@@ -1,8 +1,14 @@
 #!/bin/bash
 
-echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
-echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
+if ip a | grep inet6; then
 
-sysctl -p
+    echo "Ipv6 detected, disabling"
 
-ip a | grep inet6 && echo "ipv6 disabled"
+    echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
+    echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
+
+    sysctl -p
+
+fi
+
+ip a | grep inet6 && echo "ipv6 disabled" || echo "ipv6 still active !"
