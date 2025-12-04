@@ -10,11 +10,11 @@ RUN apk add certbot certbot-nginx bash grep supervisor openssl
 RUN mkdir -p /etc/letsencrypt
 
 WORKDIR /root/
-COPY web_engine.sh certbot_renew.sh supervisord_run.sh supervisord.conf /root/
+COPY web-engine.sh certbot-renew.sh supervisord-run.sh supervisord.conf /root/
 COPY nginx-confs /root/nginx-confs
 RUN find . -type f -print0 | xargs -0 sed -i 's/\[DOMAIN\]/'$DOMAIN'/g'
-RUN chmod +x certbot_renew.sh web_engine.sh supervisord_run.sh
+RUN chmod +x certbot-renew.sh web-engine.sh supervisord-run.sh
 
 HEALTHCHECK --interval=30m CMD [ -e /var/run/nginx.pid ] || exit 1
 
-ENTRYPOINT ["/root/supervisord_run.sh"]
+ENTRYPOINT ["/root/supervisord-run.sh"]
