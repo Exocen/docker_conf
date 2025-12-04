@@ -1,5 +1,6 @@
 [DEFAULT]
 protocol = all
+banaction = %(banaction_allports)s
 maxretry = 3
 findtime = 3600
 bantime = 86400
