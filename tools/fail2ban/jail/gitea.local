@@ -1,7 +1,5 @@
 [gitea]
 enabled = true
-filter = gitea
-port = all
+filter = gitea-ssh
 backend = systemd
-action = iptables-allports
 journalmatch = CONTAINER_NAME=gitea
