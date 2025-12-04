@@ -17,7 +17,7 @@ safe_exit() {
 
 send_mail() {
     message=$(journalctl -b CONTAINER_NAME="$1" | tail)
-    message2=$(journalctl -b -u docker_manager | tail)
+    message2=$(journalctl -b -u docker-manager | tail)
     echo -e "Subject:$1 Failure $2\n$message\n\n$message2" | msmtp "$FAIL_MAIL" && echo "Mail sended to $FAIL_MAIL."
 }
 

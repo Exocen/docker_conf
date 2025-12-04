@@ -34,7 +34,7 @@ Run the scripts for more information.
 #### Backup
 *ssh-backup* script is used to backup the */docker-data* dir from a host or locally.
 
-#### Docker_manager
+#### Docker manager
 Script created to manage all docker containers *(one to rule them all)*.\
 Can start containers, allows auto-heal, forwards errors with msmtp, use env var via config files, and could be started with systemd.
 
