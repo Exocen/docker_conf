@@ -1,5 +1,0 @@
-[gitea]
-enabled = true
-filter = gitea-ssh
-backend = systemd
-journalmatch = CONTAINER_NAME=gitea
