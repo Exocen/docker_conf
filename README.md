@@ -29,19 +29,18 @@ Works with docker.io and msmtp, no need for docker-compose
 * could be started independently with args or grouped with */tools/manager*
 
 ### Docker Tools
+Run the scripts for more information.
 
 #### Backup
-*ssh-backup* script is used to backup the */docker-data* dir from a host or locally.\
-./*ssh-backup* $host $output_dir\
-*vaultwarden-db-backup* script create a backup from the local */docker-data/vaultwarden/sqlite.db*.
+*ssh-backup* script is used to backup the */docker-data* dir from a host or locally.
 
 #### Docker_manager
 Script created to manage all docker containers *(one to rule them all)*.\
-Can start containers, allows auto-heal, forwards errors with msmtp, and could be started with systemd.\
-./docker_manager $start||stop||reload $conf_file (*tun_conf* or *vps_conf* samples)
+Can start containers, allows auto-heal, forwards errors with msmtp, use env var via config files, and could be started with systemd.
 
 #### Fail2ban
 Fail2ban configuration sample for every containers. The script installs every jails and filters.
 
-#### Notification and Mails
-*msmtp_sample* and *feed-update.sh* script (allow *atom.xml* update) availables.
+#### Atom notifications and Mails
+*msmtp_sample* gives mail sample configurations.\
+*feed-update.sh* script updates *atom.xml* from nginx_certbot status page.
