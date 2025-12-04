@@ -1,6 +1,7 @@
 ## 🐳 Docker samples
 
 Docker configuration samples, with helper tools
+Works with docker.io and msmtp, no need for docker-compose
 
 | Docker container | Base image pull (*custom) | Arguments | Comments |
 | --- |  --- |  --- |  --- |
@@ -19,16 +20,13 @@ Docker configuration samples, with helper tools
 | Ydl | **alpine*** | **$YDL_MUSIC_PATH** | Behind gluetun network |
 | Firefox | **jlesage/firefox*** | | Behind gluetun network |
 
-<br>All the containers by default
+<br>Each configuration
 * use a docker-run.sh script to build and run the container
-* are detached and volatiles (-d --rm)
-* use */docker-data* and */docker-data-nobackup* folder for data storage
+* use detached and volatiles containers(-d --rm)
+* use */docker-data* and */docker-data-nobackup* dir for data storage
 * share localtime and timezone with the host
-* can work without docker-compose
 * log to journald
-* could be started independently with args or with */tools/manager*
-* use *docker_user:docker_group 1000:1000* for user permission (data access)
-* could use external and custom images
+* could be started independently with args or grouped with */tools/manager*
 
 ### Docker Tools
 
