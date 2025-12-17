@@ -16,6 +16,10 @@ fi
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
+mkdir -p /docker-backup/filebrowser/config
+mkdir -p /docker-backup/filebrowser/database
+chown -R 1000:1000 /docker-backup/filebrowser
+
 #UserId:GroudId -> 1000:1000 must have folder permission
 docker run \
     --name filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
