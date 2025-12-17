@@ -20,6 +20,8 @@ cd "$(dirname "$(readlink -f "$0")")" || exit 1
 docker run \
     --name filebrowser --log-driver=journald --log-opt tag="{{.Name}}" --rm -d \
     -e FB_NOAUTH=true \
+    -v "/docker-data/filebrowser/config/":/config \
+    -v "/docker-data/filebrowser/database/":/database \
     -v "$FILEBROWSER_PATH":/srv \
     -u 1000:1000 \
     -p 80:80 \
