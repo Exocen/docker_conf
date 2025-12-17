@@ -16,9 +16,9 @@ fi
 
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
 
-mkdir -p /docker-backup/filebrowser/config
-mkdir -p /docker-backup/filebrowser/database
-chown -R 1000:1000 /docker-backup/filebrowser
+mkdir -p /docker-data/filebrowser/config
+mkdir -p /docker-data/filebrowser/database
+chown -R 1000:1000 /docker-data/filebrowser
 
 #UserId:GroudId -> 1000:1000 must have folder permission
 docker run \
