@@ -2,6 +2,7 @@
 enabled = true
 filter = gitea
 port = all
+protocal = all
 backend = systemd
-action = iptables-allports[chain="FORWARD"]
+action = iptables-allports[chain="DOCKER-USER"]
 journalmatch = CONTAINER_NAME=gitea
