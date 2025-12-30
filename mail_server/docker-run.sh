@@ -20,6 +20,9 @@ else
     fi
 fi
 
+LOCAL=$(dirname "$(readlink -f "$0")")
+
+if ./disable-ipv6.sh ; then
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
     -v /docker-data/dms/mail-data:/var/mail -v /docker-data/dms/mail-state:/var/mail-state \
@@ -33,3 +36,6 @@ docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
     --cap-add=NET_ADMIN \
     --name mail_server --hostname="$MAIL_DOMAIN" \
     mailserver/docker-mailserver && echo "mail_server started."
+else
+    echo ipv6 NOT disabled, stopping mail_server
+fi
