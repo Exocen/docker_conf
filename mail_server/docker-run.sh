@@ -20,7 +20,7 @@ else
     fi
 fi
 
-LOCAL=$(dirname "$(readlink -f "$0")")
+cd $(dirname "$(readlink -f "$0")")
 
 if ./disable-ipv6.sh ; then
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
