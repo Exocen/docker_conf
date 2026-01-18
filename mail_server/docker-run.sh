@@ -24,7 +24,7 @@ cd $(dirname "$(readlink -f "$0")")
 
 if ./disable-ipv6.sh ; then
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
-    -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+    -v /etc/localtime:/etc/localtime:ro \
     -v /docker-data/dms/mail-data:/var/mail -v /docker-data/dms/mail-state:/var/mail-state \
     -v /docker-data/dms/mail-logs:/var/log/mail -v /docker-data/dms/config:/tmp/docker-mailserver \
     -v /docker-data/letsencrypt:/etc/letsencrypt \

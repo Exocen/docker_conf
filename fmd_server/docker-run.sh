@@ -12,7 +12,7 @@ mkdir -p $DOCKER_PATH
 chown 1000:1000 $DOCKER_PATH
 
 docker run -d --rm --log-driver=journald --log-opt tag="{{.Name}}" \
-    -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+    -v /etc/localtime:/etc/localtime:ro \
     -v "$DOCKER_PATH":/var/lib/fmd-server/db/ \
     --net user_network --ip 10.0.0.83 \
     --name=fmd_server \

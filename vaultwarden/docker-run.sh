@@ -25,7 +25,7 @@ if [ "$VW_ADMIN_PASS_ENABLED" -eq 1 ]; then
     docker run  \
         -d --name vaultwarden --rm \
         -v /docker-data/vaultwarden/:/data/ \
-        -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+        -v /etc/localtime:/etc/localtime:ro \
         --log-driver=journald --log-opt tag="{{.Name}}" -e ADMIN_TOKEN="$PASS" \
         --net user_network --ip 10.0.0.80 vaultwarden/server:latest-alpine && echo "vaultwarden started."
 
@@ -35,7 +35,7 @@ else
     docker run  \
         -d --name vaultwarden --rm \
         -v /docker-data/vaultwarden/:/data/ \
-        -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro \
+        -v /etc/localtime:/etc/localtime:ro \
         --log-driver=journald --log-opt tag="{{.Name}}" \
         --net user_network --ip 10.0.0.80 vaultwarden/server:latest-alpine && echo "vaultwarden started."
 fi
