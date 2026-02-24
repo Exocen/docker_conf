@@ -28,7 +28,7 @@ docker run -d --rm --cap-add=NET_ADMIN --name gluetun \
     -p 21027:21027/udp \
     -p 22000:22000/tcp \
     -p 22000:22000/udp \
-    -e VPN_SERVICE_PROVIDER=mullvad \
+    -e VPN_SERVICE_PROVIDER="$VPN_PROVIDER" \
     -e VPN_TYPE=wireguard \
     -e WIREGUARD_PRIVATE_KEY="$WIREGUARD_PRIVATE_KEY" \
     -e WIREGUARD_ADDRESSES="$WIREGUARD_ADDRESSE" \
